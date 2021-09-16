@@ -1,0 +1,33 @@
+---
+version: "2.1"
+services:
+  swag:
+    image: ghcr.io/linuxserver/swag
+    container_name: swag
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - URL=dacurse.xyz
+      - SUBDOMAINS=bingo,url,
+      - VALIDATION=http
+    volumes:
+      - /etc/web/swag/appdata/config:/config
+    ports:
+      - 443:443
+      - 80:80
+    restart: unless-stopped
+  bingo:
+    image: dacurse0/forsen-bingo:http
+    container_name: forsen-bingo
+    restart: unless-stopped
+    volumes:
+      - /var/lib/forsen-bingo/data:/data
+  url:
+    image: dacurse0/url-shortener:latest
+    container_name: url-shortener
+    restart: unless-stopped
+    volumes:
+      - /var/lib/url-shortener/data:/data
