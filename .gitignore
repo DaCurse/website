@@ -1,0 +1,15 @@
+# Exclude all default config - https://stackoverflow.com/questions/5533050/
+!swag/
+swag/*
+
+!swag/appdata/
+swag/appdata/*
+
+!swag/appdata/nginx/
+swag/appdata/nginx/*
+
+!swag/appdata/nginx/site-confs
+
+# Vim swap file
+*.swp
+
